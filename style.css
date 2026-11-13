@@ -59,6 +59,7 @@ body {
   letter-spacing: 0.04em;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  padding-bottom: 70px; /* Space for fixed bottom phone bar */
 }
 
 img {
@@ -1519,5 +1520,269 @@ button, input, textarea, select {
     flex-direction: column;
     gap: 14px;
     text-align: center;
+  }
+}
+
+/* ==========================================================================
+   FOOTER CALLOUT & FIXED FOOTER BAR (ALWAYS VISIBLE PHONE)
+   ========================================================================== */
+.footer-callout {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(194, 149, 105, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 32px 40px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-callout-sub {
+  font-family: var(--font-en);
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.footer-callout-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.footer-callout-desc {
+  font-size: 0.88rem;
+  color: rgba(222, 214, 203, 0.8);
+}
+
+.footer-callout-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.footer-callout-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-en);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.footer-callout-tel .tel-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-callout-tel:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.footer-callout-hours {
+  font-size: 0.8rem;
+  color: rgba(222, 214, 203, 0.75);
+}
+
+.footer-info-compact {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(222, 214, 203, 0.8);
+}
+
+.footer-phone-row {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.tel-link-inline {
+  color: var(--color-accent);
+  font-family: var(--font-en);
+  font-size: 1.05rem;
+}
+
+.tel-link-inline:hover {
+  text-decoration: underline;
+}
+
+/* --- FIXED BOTTOM BAR (Always Visible) --- */
+.fixed-footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  background-color: rgba(45, 34, 25, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(194, 149, 105, 0.5);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+
+.fixed-bar-container {
+  width: 92%;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.fixed-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #ded6cb;
+}
+
+.fixed-bar-label {
+  font-size: 0.85rem;
+  color: rgba(222, 214, 203, 0.85);
+  font-weight: 500;
+}
+
+.fixed-bar-tel-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fixed-tel-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-accent);
+}
+
+.fixed-bar-tel {
+  font-family: var(--font-en);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  transition: color var(--transition-fast);
+}
+
+.fixed-bar-tel:hover {
+  color: var(--color-accent);
+}
+
+.fixed-bar-hours {
+  font-size: 0.78rem;
+  color: rgba(222, 214, 203, 0.7);
+}
+
+.fixed-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-fixed-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: all var(--transition-fast);
+}
+
+.btn-fixed-call:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+.btn-call-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-fixed-reserve {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.btn-fixed-reserve:hover {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  border-color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .footer-callout {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+    gap: 20px;
+  }
+  .footer-callout-action {
+    align-items: center;
+  }
+  .fixed-bar-label {
+    display: none;
+  }
+  .fixed-bar-hours {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    padding-bottom: 64px;
+  }
+  .fixed-footer-bar {
+    height: 60px;
+  }
+  .fixed-bar-info {
+    display: none;
+  }
+  .fixed-bar-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 10px;
+  }
+  .btn-fixed-call,
+  .btn-fixed-reserve {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    justify-content: center;
+    border-radius: var(--radius-sm);
   }
 }
