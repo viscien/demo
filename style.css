@@ -211,37 +211,223 @@ a {
 }
 
 /* ==========================================================================
-   HERO
+   HERO (3-Slide Auto Slideshow: 2s per image, 6s loop)
    ========================================================================== */
 .hero {
   position: relative;
-  min-height: 60vh;
+  min-height: 62vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 40px 20px 48px;
+  padding: 44px 20px 54px;
   overflow: hidden;
 }
 
-.hero-bg {
+.hero-slider {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80');
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.72);
-  z-index: 1;
+  opacity: 0;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* 3 Selected High-Quality Cafe Images */
+.slide-1 {
+  background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80');
+  animation-name: slideFade1;
+}
+
+.slide-2 {
+  background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80');
+  animation-name: slideFade2;
+}
+
+.slide-3 {
+  background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80');
+  animation-name: slideFade3;
+}
+
+/* 2-Second Transition Keyframes (Total 6s: 0-2s Slide1, 2-4s Slide2, 4-6s Slide3) */
+@keyframes slideFade1 {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  26% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  33.33% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  93.33% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideFade2 {
+  0%, 26.66% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  33.33% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  59.33% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  66.66% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideFade3 {
+  0%, 60% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  66.66% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  92.66% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* Dark overlay for optimal text contrast */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(28, 19, 13, 0.45) 0%,
+    rgba(28, 19, 13, 0.35) 40%,
+    rgba(28, 19, 13, 0.65) 100%
+  );
+  z-index: 2;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   color: #ffffff;
   max-width: 440px;
+}
+
+/* Synchronized Slide Indicator Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.dot-1 {
+  animation-name: dotFade1;
+}
+
+.dot-2 {
+  animation-name: dotFade2;
+}
+
+.dot-3 {
+  animation-name: dotFade3;
+}
+
+@keyframes dotFade1 {
+  0%, 28% {
+    background-color: #ffffff;
+    width: 22px;
+  }
+  33.33%, 95% {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 8px;
+  }
+  100% {
+    background-color: #ffffff;
+    width: 22px;
+  }
+}
+
+@keyframes dotFade2 {
+  0%, 28% {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 8px;
+  }
+  33.33%, 61% {
+    background-color: #ffffff;
+    width: 22px;
+  }
+  66.66%, 100% {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 8px;
+  }
+}
+
+@keyframes dotFade3 {
+  0%, 61% {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 8px;
+  }
+  66.66%, 95% {
+    background-color: #ffffff;
+    width: 22px;
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 8px;
+  }
 }
 
 .hero-sub {

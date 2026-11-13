@@ -33,7 +33,14 @@
   <main>
     <!-- ==================== HERO ==================== -->
     <section class="hero" id="top">
-      <div class="hero-bg"></div>
+      <!-- 3 Slides with 2-second pure CSS auto-transition -->
+      <div class="hero-slider" aria-hidden="true">
+        <div class="hero-slide slide-1"></div>
+        <div class="hero-slide slide-2"></div>
+        <div class="hero-slide slide-3"></div>
+      </div>
+      <div class="hero-overlay"></div>
+
       <div class="hero-content">
         <span class="hero-sub">Specialty Coffee & Sweets</span>
         <h1 class="hero-title">日常に、<br>ひとときの余白を。</h1>
@@ -42,6 +49,13 @@
           <a href="#menu" class="btn btn-primary">メニューを見る</a>
           <a href="#info" class="btn btn-outline">店舗・アクセス</a>
         </div>
+      </div>
+
+      <!-- Slide indicator dots -->
+      <div class="slider-dots" aria-hidden="true">
+        <span class="slider-dot dot-1"></span>
+        <span class="slider-dot dot-2"></span>
+        <span class="slider-dot dot-3"></span>
       </div>
     </section>
 
