@@ -1,11 +1,12 @@
 /* ==========================================================================
    Café de Komorebi - Responsive Integrated Stylesheet
-   Pure HTML & CSS Implementation
-   PC View: Full Rich Layout (first design)
-   SP View: Mobile-First Concise Layout with 3-Slide 2s Auto-Slideshow (recent design)
+   Pure HTML & CSS Implementation (Zero JavaScript)
+   - PC View: Full Rich Layout with Landscape Hero & Layered Gallery
+   - SP View: Mobile-First Layout with 3-Slide 2s Auto-Slideshow & Quick Nav
+   - Both: Always Visible Fixed Phone Bar (03-1234-5678)
    ========================================================================== */
 
-/* --- Design Tokens --- */
+/* --- Design Tokens & CSS Variables --- */
 :root {
   --color-primary: #3d2b1f;        /* Deep Roast Brown */
   --color-primary-light: #573e2c;
@@ -45,7 +46,7 @@
   --bottom-bar-height-sp: 64px;
 }
 
-/* --- Base Reset --- */
+/* --- Base & Reset --- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -90,7 +91,7 @@ button, input, textarea, select {
   font-size: 1rem;
 }
 
-/* --- Global Keyframe Animations --- */
+/* --- Keyframe Animations --- */
 @keyframes scrollAnim {
   0% { transform: scaleY(0); transform-origin: top; }
   50% { transform: scaleY(1); transform-origin: top; }
@@ -146,9 +147,7 @@ button, input, textarea, select {
   100% { background-color: rgba(255, 255, 255, 0.4); width: 8px; }
 }
 
-/* ==========================================================================
-   COMMON FIXED BOTTOM BAR BASE
-   ========================================================================== */
+/* --- Common Fixed Footer Bar Container --- */
 .fixed-footer-bar {
   position: fixed;
   bottom: 0;
@@ -175,6 +174,7 @@ button, input, textarea, select {
 
   .pc-layout {
     display: block !important;
+    width: 100%;
   }
 
   .fixed-bar-pc {
@@ -187,11 +187,6 @@ button, input, textarea, select {
 
   body {
     padding-bottom: var(--bottom-bar-height-pc);
-  }
-
-  /* Scope PC CSS */
-  .pc-layout {
-    width: 100%;
   }
 
 .container {
@@ -213,14 +208,7 @@ button, input, textarea, select {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .sp-only {
-    display: inline;
-  }
-  .section {
-    padding: 70px 0;
-  }
-}
+
 
 /* Section Title Styling */
 .section-title-wrap {
@@ -459,58 +447,7 @@ button, input, textarea, select {
 }
 
 /* Mobile Nav Menu via pure CSS */
-@media (max-width: 900px) {
-  .hamburger-btn {
-    display: block;
-  }
 
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--color-bg-base);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease-in-out;
-    z-index: 1000;
-  }
-
-  .nav-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-    padding-bottom: 40px;
-  }
-
-  .nav-link {
-    font-size: 1.25rem;
-  }
-
-  /* Hamburger transform when checked */
-  .nav-toggle:checked ~ .hamburger-btn .bar:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-  }
-  .nav-toggle:checked ~ .hamburger-btn .bar:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  .nav-toggle:checked ~ .hamburger-btn .bar:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-  }
-
-  /* Menu open state */
-  .nav-toggle:checked ~ .nav-menu {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-}
 
 /* ==========================================================================
    HERO SECTION
@@ -650,22 +587,7 @@ button, input, textarea, select {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.3rem;
-  }
-  .hero-desc {
-    font-size: 0.95rem;
-  }
-  .hero-badge {
-    position: static;
-    margin-top: 30px;
-    display: inline-flex;
-  }
-  .hero {
-    background-attachment: scroll; /* fixes lag on mobile iOS */
-  }
-}
+
 
 /* ==========================================================================
    ABOUT SECTION
@@ -753,24 +675,7 @@ button, input, textarea, select {
   font-style: italic;
 }
 
-@media (max-width: 900px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-  .about-image-wrapper {
-    max-width: 500px;
-    margin: 0 auto;
-    padding-bottom: 40px;
-    padding-right: 20px;
-  }
-  .about-img-main {
-    height: 380px;
-  }
-  .about-img-sub-wrap {
-    height: 200px;
-  }
-}
+
 
 /* ==========================================================================
    COMMITMENT / CONCEPT SECTION
@@ -852,12 +757,7 @@ button, input, textarea, select {
   line-height: 1.8;
 }
 
-@media (max-width: 900px) {
-  .concept-cards {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-}
+
 
 /* ==========================================================================
    MENU SECTION
@@ -992,17 +892,9 @@ button, input, textarea, select {
   border-radius: var(--radius-md);
 }
 
-@media (max-width: 992px) {
-  .menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 600px) {
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-}
+
+
 
 /* ==========================================================================
    GALLERY SECTION
@@ -1062,16 +954,7 @@ button, input, textarea, select {
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 180px;
-  }
-  .gallery-item.item-large {
-    grid-column: span 2;
-    grid-row: span 1;
-  }
-}
+
 
 /* ==========================================================================
    NEWS SECTION
@@ -1150,14 +1033,7 @@ button, input, textarea, select {
   color: var(--color-accent);
 }
 
-@media (max-width: 640px) {
-  .news-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 18px 4px;
-  }
-}
+
 
 /* ==========================================================================
    SHOP INFO & ACCESS
@@ -1357,11 +1233,7 @@ button, input, textarea, select {
   line-height: 1.6;
 }
 
-@media (max-width: 900px) {
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 /* ==========================================================================
    RESERVATION & CONTACT
@@ -1484,19 +1356,7 @@ button, input, textarea, select {
   margin-top: 16px;
 }
 
-@media (max-width: 640px) {
-  .contact-card {
-    padding: 36px 20px;
-  }
-  .contact-methods {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-}
+
 
 /* ==========================================================================
    FOOTER
@@ -1614,24 +1474,9 @@ button, input, textarea, select {
   color: #ffffff;
 }
 
-@media (max-width: 900px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-}
 
-@media (max-width: 600px) {
-  .footer-links-group {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 14px;
-    text-align: center;
-  }
-}
+
+
 
 /* ==========================================================================
    FOOTER CALLOUT & FIXED FOOTER BAR (ALWAYS VISIBLE PHONE)
@@ -1860,6 +1705,7 @@ button, input, textarea, select {
 
   .sp-layout {
     display: block !important;
+    width: 100%;
   }
 
   .fixed-bar-sp {
@@ -1873,10 +1719,6 @@ button, input, textarea, select {
 
   body {
     padding-bottom: calc(var(--bottom-bar-height-sp) + env(safe-area-inset-bottom, 0px) + 20px);
-  }
-
-  .sp-layout {
-    width: 100%;
   }
 
 .container {
@@ -2663,16 +2505,6 @@ button, input, textarea, select {
 /* ==========================================================================
    DESKTOP / TABLET ADAPTATION
    ========================================================================== */
-@media (min-width: 601px) {
-  html {
-    font-size: 16px;
-  }
-  .container,
-  .header-inner,
-  .fixed-bar-inner {
-    max-width: 640px;
-  }
-}
 
 
 /* --- SP FIXED BOTTOM BAR --- */
